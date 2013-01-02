@@ -1,4 +1,4 @@
-easior_overlay
+local_overlay
 ==============
 
-Portage Overlay of mine
+It is a local portage overlay of mine.
