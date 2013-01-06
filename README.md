@@ -1,4 +1,4 @@
 local_overlay
 ==============
 
-It is a local portage overlay of mine.
+This is a local portage overlay of mine.
