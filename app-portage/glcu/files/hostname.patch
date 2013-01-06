@@ -1,0 +1,11 @@
+--- a/glcu.py	2011-11-01 21:25:52.798841635 +0100
++++ b/glcu.py	2011-11-01 21:23:35.958527234 +0100
+@@ -288,7 +288,7 @@
+         self.__hostname = False
+         
+         
+-        getHostname = ShellExecution('grep HOSTNAME /etc/conf.d/hostname')
++        getHostname = ShellExecution('grep hostname /etc/conf.d/hostname')
+         if (getHostname.getExitStatus() == 0 ):
+             fileHostname = re.findall("\"(.+)\"",getHostname.getOutput())
+             self.__hostname = '('  + str(fileHostname[0]) + ')'

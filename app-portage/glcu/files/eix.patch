@@ -1,0 +1,14 @@
+--- a/glcu.py   2011-02-16 12:00:13.837000024 +0100
++++ b/glcu.py   2011-02-16 12:00:50.801000017 +0100
+@@ -511,9 +511,9 @@
+     # 3.b) run update-eix
+ 
+     if (mainConfig.getMainConfig('updateix')):
+-        eupdatedb = ShellExecution('/usr/bin/update-eix')
++        eupdatedb = ShellExecution('/usr/bin/eix-update')
+         if (eupdatedb.getExitStatus() != 0):
+-            mail.earlyErrorMail('update-eix failed','Error log for update-eix:\n\n' + eupdatedb.getOutput())
++            mail.earlyErrorMail('eix-update failed','Error log for eix-update:\n\n' + eupdatedb.getOutput())
+             
+             
+     # 4. check for security updates (if wanted) 

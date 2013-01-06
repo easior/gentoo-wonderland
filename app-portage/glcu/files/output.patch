@@ -1,0 +1,11 @@
+--- a/glcu.py   2011-02-16 10:46:48.794680657 +0100
++++ b/glcu.py   2011-02-16 10:46:26.177482091 +0100
+@@ -13,7 +13,7 @@
+ import os
+ import ConfigParser
+ import getopt
+-import output
++from portage import output
+ import re
+ import pickle
+ import string 

@@ -1,0 +1,63 @@
+--- glcu.old.py        2012-05-01 16:24:02.926825511 +0800  
++++ glcu.py        2012-05-01 16:36:50.463495620 +0800  
+@@ -13,7 +13,7 @@  
+ import os  
+ import ConfigParser  
+ import getopt  
+-import output  
++from portage import output  
+ import re  
+ import pickle  
+ import string  
+-import sets  
+ import datetime  
+ import random  
+   
+@@ -288,7 +287,7 @@  
+         self.__hostname = False  
+           
+           
+-        getHostname = ShellExecution('grep HOSTNAME /etc/conf.d/hostname')  
++        getHostname = ShellExecution('grep hostname /etc/conf.d/hostname')  
+         if (getHostname.getExitStatus() == 0 ):  
+             fileHostname = re.findall("\"(.+)\"",getHostname.getOutput())  
+             self.__hostname = '('  + str(fileHostname[0]) + ')'  
+@@ -511,9 +510,9 @@  
+     # 3.b) run update-eix   
+       
+     if (mainConfig.getMainConfig('updateix')):  
+-        eupdatedb = ShellExecution('/usr/bin/update-eix')  
++        eupdatedb = ShellExecution('/usr/bin/eix-update')  
+         if (eupdatedb.getExitStatus() != 0):  
+-            mail.earlyErrorMail('update-eix failed','Error log for update-eix:\n\n' + eupdatedb.getOutput())  
++            mail.earlyErrorMail('eix-update failed','Error log for eix-update:\n\n' + eupdatedb.getOutput())  
+                   
+                   
+     # 4. check for security updates (if wanted)  
+@@ -549,7 +548,7 @@  
+             print "glsa-package count: " , len(secPackages)   
+             print "glsa-package list: " , secPackages  
+       
+-    packageList = sets.Set(secPackages)  
++    packageList = set(secPackages)  
+           
+     # Only prebuilt security packages if they are installed:  
+     newSecPList = packageList.copy()  
+@@ -772,7 +771,7 @@  
+                                       
+                         # 2. update list of updates and install  
+                         if (len(answer[1]) > 0):  
+-                            removeUpdates = sets.Set()  
++                            removeUpdates = set()  
+                             for removePackage in answer[1]:  
+                                 removePackage = int(removePackage) - 1  
+                                 removeUpdates.add(updates[removePackage])  
+@@ -864,7 +863,7 @@  
+                                       
+                         # 2. update list of updates and install  
+                         if (len(glsaAnswer[1]) > 0):  
+-                            removeGlsas = sets.Set()  
++                            removeGlsas = set()  
+                             for removeGlsa in glsaAnswer[1]:  
+                                 removeGlsa = int(removeGlsa) - 1  
+                                 removeGlsas.add(glsas[removeGlsa])  
