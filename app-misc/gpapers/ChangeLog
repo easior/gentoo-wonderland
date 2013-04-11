@@ -1,0 +1,10 @@
+# Copyright 1999-2012 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+*gpapers-9999 (11 Oct 2012)
+
+  11 Oct 2012; Easior Lars <easior@fedoraproject.org> ChangeLog,
+  gpapers-9999.ebuild :
+
+  Initial import.
