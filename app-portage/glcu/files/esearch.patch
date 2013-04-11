@@ -1,0 +1,11 @@
+--- glcu.py	2012-05-02 09:05:45.000000000 +0800
++++ glcur.py	2012-05-05 14:23:24.000000000 +0800
+@@ -503,7 +503,7 @@
+     # 3.a) run eupdatedb 
+ 
+     if (mainConfig.getMainConfig('eupdatedb')):
+-        eupdatedb = ShellExecution('/usr/sbin/eupdatedb')
++        eupdatedb = ShellExecution('/usr/bin/eupdatedb')
+         if (eupdatedb.getExitStatus() != 0):
+             mail.earlyErrorMail('eupdatedb failed','Error log for eupdatedb:\n\n' + eupdatedb.getOutput())
+ 

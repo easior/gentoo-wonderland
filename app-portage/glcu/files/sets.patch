@@ -1,0 +1,37 @@
+--- glcu.py	2012-05-02 08:46:57.000000000 +0800
++++ glcur.py	2012-05-02 08:53:02.000000000 +0800
+@@ -17,7 +17,6 @@
+ import re
+ import pickle
+ import string
+-import sets
+ import datetime
+ import random
+ 
+@@ -549,7 +548,7 @@
+             print "glsa-package count: " , len(secPackages) 
+             print "glsa-package list: " , secPackages
+ 
+-    packageList = sets.Set(secPackages)
++    packageList = set(secPackages)
+     
+     # Only prebuilt security packages if they are installed:
+     newSecPList = packageList.copy()
+@@ -772,7 +771,7 @@
+                                 
+                         # 2. update list of updates and install
+                         if (len(answer[1]) > 0):
+-                            removeUpdates = sets.Set()
++                            removeUpdates = set()
+                             for removePackage in answer[1]:
+                                 removePackage = int(removePackage) - 1
+                                 removeUpdates.add(updates[removePackage])
+@@ -864,7 +863,7 @@
+                                 
+                         # 2. update list of updates and install
+                         if (len(glsaAnswer[1]) > 0):
+-                            removeGlsas = sets.Set()
++                            removeGlsas = set()
+                             for removeGlsa in glsaAnswer[1]:
+                                 removeGlsa = int(removeGlsa) - 1
+                                 removeGlsas.add(glsas[removeGlsa])

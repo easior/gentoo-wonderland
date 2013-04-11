@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>app-emacs</herd>
+	<maintainer>
+		<email>easior.lars@gmail.com</email>
+		<name>Easor</name>
+	</maintainer>
+	<longdescription>
+		Emacs evernote mode offers functions to refer and edit Evernote
+		notes directly from Emacs. It is developed by Yusuke Kawakami.
+		Its homepage is at.
+	</longdescription>
+	<use>
+		<flag name='anything'>use bundle anything</flag>
+		<flag name='w3m'>use bundle w3m</flag>
+	</use>
+</pkgmetadata>

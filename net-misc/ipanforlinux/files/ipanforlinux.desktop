@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Ipan For Linux
+Comment=KuaiPan
+Exec=ipangui
+Icon=ipangui
+Terminal=false
+Type=Application
+Categories=Network;
+StartupNotify=true
