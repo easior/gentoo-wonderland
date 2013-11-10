@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>net-misc</herd>
+	<maintainer>
+		<email>easior.lars@gmail.com</email>
+		<name>Easior Lars</name>
+	</maintainer>
+	<longdescription lang="en">
+		the open-sourced, Gnome based digital library manager
+	</longdescription>
+</pkgmetadata>
