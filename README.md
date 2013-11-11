@@ -1,4 +1,4 @@
-local_overlay
+Gentoo Wonderland
 ==============
 
 This is a local portage overlay of mine. There contain ebuild
