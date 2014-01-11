@@ -15,15 +15,14 @@ their kindly, warmly helps.
 Installation
 --------------
 * Manually Management
+```sh
+$ sudo mkdir -p /usr/local/portage/
+$ cd /usr/local/portage
+$ sudo git clone http://github.com/easior/gentoo-wonderland.git
+$ sudo echo PORTDIR_OVERLAY="${PORTDIR_OVERLAY} /usr/local/portage/gentoo-wonderland" >> /etc/portage/make.conf
 ```
-$ sudo mkdir /usr/local/portage/
-```
->  $ cd /usr/local/portage
->  $ sudo git clone http://github.com/easior/gentoo-wonderland.git
->  $ sudo echo PORTDIR_OVERLAY="${PORTDIR_OVERLAY} /usr/local/portage/gentoo-wonderland" >> /etc/portage/make.conf
 
 * Management by layman
-
 >  $ sudo sed -i 's/^#overlay_def : /etc/layman/overlays/overlay_def : /etc/layman/overlays/g' /etc/layman/layman.cfg
 >  $ sudo mkdir -p /etc/layman/overlays
 >  $ sudo wget https://raw.github.com/easior/gentoo-wonderland/master/repo.xml -O /etc/layman/overlays/gentoo-wonderland.xml
