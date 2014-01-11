@@ -23,8 +23,10 @@ $ sudo echo PORTDIR_OVERLAY="${PORTDIR_OVERLAY} /usr/local/portage/gentoo-wonder
 ```
 
 * Management by layman
->  $ sudo sed -i 's/^#overlay_def : /etc/layman/overlays/overlay_def : /etc/layman/overlays/g' /etc/layman/layman.cfg
->  $ sudo mkdir -p /etc/layman/overlays
->  $ sudo wget https://raw.github.com/easior/gentoo-wonderland/master/repo.xml -O /etc/layman/overlays/gentoo-wonderland.xml
->  $ sudo layman -S
->  $ sudo layman -f -a gentoo-wonderland
+```sh
+$ sudo sed -i 's/^#overlay_def : /etc/layman/overlays/overlay_def : /etc/layman/overlays/g' /etc/layman/layman.cfg
+$ sudo mkdir -p /etc/layman/overlays
+$ sudo wget https://raw.github.com/easior/gentoo-wonderland/master/repo.xml -O /etc/layman/overlays/gentoo-wonderland.xml
+$ sudo layman -S
+$ sudo layman -f -a gentoo-wonderland
+```
