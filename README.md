@@ -15,7 +15,9 @@ their kindly, warmly helps.
 Installation
 --------------
 * Manually Management
->  $ sudo mkdir /usr/local/portage/
+```
+$ sudo mkdir /usr/local/portage/
+```
 >  $ cd /usr/local/portage
 >  $ sudo git clone http://github.com/easior/gentoo-wonderland.git
 >  $ sudo echo PORTDIR_OVERLAY="${PORTDIR_OVERLAY} /usr/local/portage/gentoo-wonderland" >> /etc/portage/make.conf
