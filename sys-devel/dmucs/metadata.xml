@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>sys-devel</herd>
+	<maintainer>
+		<email>easior.lars@gmail.com</email>
+		<name>Easior Lars</name>
+	</maintainer>
+	<longdescription lang="en">
+		a Distributed Multi-User Compilation System
+	</longdescription>
+</pkgmetadata>
