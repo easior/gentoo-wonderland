@@ -6,6 +6,7 @@ EAPI=5
 
 inherit eutils
 
+MY_PV=2.4
 DESCRIPTION="An iterative solver template library for DUNE"
 HOMEPAGE="http://www.dune-project.org/"
 SRC_URI="http://www.dune-project.org/download/${PV}/${PN}-${PV}.tar.gz"
@@ -16,19 +17,21 @@ KEYWORDS="~x86 ~amd64"
 IUSE="fortran mpi -static"
 
 DEPEND="dev-libs/boost
-		dev-libs/gmp
-		dev-utils/cmake
-		dev-utils/pkgconfig
-		sys-devel/libtool
-		sci-libs/dune-common[mpi=,fortran=,static(-)=]
-		# sci-libs/metis
-		# sci-libs/superlu || sci-libs/umfpack
-		app-doc/doxygen
-		media-gfx/graphviz"
+	dev-libs/gmp
+	dev-util/cmake
+	dev-util/pkgconfig
+	sys-devel/libtool
+	sci-libs/dune-common[mpi=,fortran=,static(-)=]
+	app-doc/doxygen
+	media-gfx/graphviz"
+	# sci-libs/metis
+	# sci-libs/superlu || sci-libs/umfpack
 RDEPEND="${DEPEND}"
 
+S=${WORKDIR}/${PN}-${MY_PV}
+
 src_configure() {
-	econf $(use_enable !static ) \
+	econf $(use_enable static ) \
 			$(use_enable mpi parallel )
 	# \
 	# 		 --with-metis=%{_prefix} \
