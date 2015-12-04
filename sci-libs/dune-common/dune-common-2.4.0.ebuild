@@ -4,9 +4,9 @@
 
 EAPI=5
 
-inherit eutils
+inherit eutils versionator
 
-MY_PV=2.4
+MY_PV="$(get_version_component_range 1-2)"
 DESCRIPTION="Infrastructure and foundation classes"
 HOMEPAGE="http://dune-project.org"
 SRC_URI="http://www.dune-project.org/download/${PV}/${PN}-${PV}.tar.gz"
