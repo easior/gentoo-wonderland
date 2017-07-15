@@ -72,7 +72,7 @@ src_prepare() {
 
 src_install() {
 	insinto /usr/share/nixnote2
-	doins -r certs help images java qss translations changelog.txt license.html shortcuts.txt *.ini
+	doins -r help images java qss translations changelog.txt license.html shortcuts.txt *.ini
 
 	rm -r ${D}/usr/share/nixnote2/translations/*.ts
 	
