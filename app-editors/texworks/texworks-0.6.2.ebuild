@@ -21,6 +21,7 @@ RDEPEND="app-text/hunspell
 	dev-qt/qtcore:5
 	dev-qt/qtdbus:5
 	dev-qt/qtgui:5
+	dev-qt/designer:5
 	dev-qt/qtscript:5[scripttools]
 	lua? ( dev-lang/lua:0 )
 	python? ( ${PYTHON_DEPS} ) "
