@@ -17,14 +17,19 @@ LICENSE="GPL-2"
 KEYWORDS="alpha amd64 ~arm ppc ppc64 ~sparc x86"
 IUSE="+curl -daemon doc +mysql postgres sqlite"
 
-REQUIRED_USE="|| ( mysql postgres sqlite )"
+REQUIRED_USE="|| ( mysql postgres sqlite )
+			|| ( apache nginx )"
 
 COMMON_DEPEND="
 	daemon? ( dev-libs/libcgroup
 		dev-libs/jsoncpp )
 	doc? ( app-text/linuxdoc-tools )
 	dev-texlive/texlive-latexrecommended
-	dev-lang/php[curl?,filter,gd,json,mysql?,postgres?,sqlite?]
+	dev-texlive/texlive-fontsrecommended
+	dev-texlive/texlive-latexextra
+	dev-texlive/texlive-langeuropean
+	dev-lang/php[cli,curl?,filter,gd,gmp,mcrypt,json,mysql?,postgres?,sqlite?,xml]
+	sys-process/procps
 	virtual/httpd-php"
 DEPEND="${COMMON_DEPEND}
 	dev-php/composer
@@ -50,18 +55,18 @@ src_configure() {
 		myconf="--enable-fhs"
 	else
 		myconf="--with-domjudge_docdir=/usr/share/doc/domjuge
-	    --with-domserver_bindir=/usr/bin
-	    --with-domserver_etcdir=/etc/domjudge
-	    --with-domserver_wwwdir=/var/www/domjudge
-	    --with-domserver_sqldir=/var/lib/domjudge/sql
-	    --with-domserver_libdir=/usr/share/domjudge
-	    --with-domserver_libvendordir=/usr/share/domjudge/vendor
-	    --with-domserver_libwwwdir=/usr/share/domjudge/www
-	    --with-domserver_libsubmitdir=/usr/share/domjudge/submit
-	    --with-domserver_logdir=/var/log/domjudge
-	    --with-domserver_rundir=/run/domjudge
-	    --with-domserver_tmpdir=/tmp
-	    --with-domserver_submitdir=/var/www/domjudge/submissions"
+		--with-domserver_bindir=/usr/bin
+		--with-domserver_etcdir=/etc/domjudge
+		--with-domserver_wwwdir=/var/www/domjudge
+		--with-domserver_sqldir=/var/lib/domjudge/sql
+		--with-domserver_libdir=/usr/share/domjudge
+		--with-domserver_libvendordir=/usr/share/domjudge/vendor
+		--with-domserver_libwwwdir=/usr/share/domjudge/www
+		--with-domserver_libsubmitdir=/usr/share/domjudge/submit
+		--with-domserver_logdir=/var/log/domjudge
+		--with-domserver_rundir=/run/domjudge
+		--with-domserver_tmpdir=/tmp
+		--with-domserver_submitdir=/var/www/domjudge/submissions"
 	fi
 
 	if use doc ; then
@@ -102,8 +107,8 @@ src_install() {
 	fi
 
 	webapp_src_preinst
-        cp -R ${D}/usr/share/${PN}/www/* ${D}/${MY_HTDOCSDIR}
-        webapp_postinst_txt en ${FILESDIR}/postinstall-en.txt
+		cp -R ${D}/usr/share/${PN}/www/* ${D}/${MY_HTDOCSDIR}
+		webapp_postinst_txt en ${FILESDIR}/postinstall-en.txt
 	insinto "${MY_HTDOCSDIR}"
 
 	#webapp_serverowned -R "${MY_HTDOCSDIR}"/apps
@@ -112,6 +117,7 @@ src_install() {
 	#webapp_configfile "${MY_HTDOCSDIR}"/.htaccess
 
 	webapp_src_install
+	fperms 0644 /etc/domjudge/dbpasswords.secret
 }
 
 pkg_postinst() {
@@ -121,4 +127,3 @@ pkg_postinst() {
 	elog "(check the recommended tab). No application data is lost."
 	webapp_pkg_postinst
 }
-
