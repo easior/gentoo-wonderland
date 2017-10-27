@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit eutils webapp
+inherit eutils user webapp
 
 #S="${WORKDIR}/${MY_P}"
 #S=${WORKDIR}/${PN}
@@ -25,9 +25,10 @@ COMMON_DEPEND="
 	doc? ( app-text/linuxdoc-tools )
 	dev-texlive/texlive-latexrecommended
 	dev-lang/php[curl?,filter,gd,json,mysql?,postgres?,sqlite?]
-	dev-php/composer
 	virtual/httpd-php"
-DEPEND="${COMMON_DEPEND}"
+DEPEND="${COMMON_DEPEND}
+	dev-php/composer
+	sys-apps/net-tools"
 RDEPEND="${COMMON_DEPEND}
 	 app-admin/sudo"
 
@@ -38,7 +39,7 @@ pkg_setup() {
 pkg_preinst() {
 	if use daemon; then
 		enewgroup domjudge-run
-		enewuser domjudge-run -1 /sbin/nologin /dev/null "nogroup"
+		enewuser domjudge-run -1 -1 -1 nogroup
 	fi
 }
 
@@ -101,10 +102,9 @@ src_install() {
 	fi
 
 	webapp_src_preinst
-
+        cp -R ${D}/usr/share/${PN}/www/* ${D}/${MY_HTDOCSDIR}
+        webapp_postinst_txt en ${FILESDIR}/postinstall-en.txt
 	insinto "${MY_HTDOCSDIR}"
-	doins -r .
-	dodir "${MY_HTDOCSDIR}"/data
 
 	#webapp_serverowned -R "${MY_HTDOCSDIR}"/apps
 	#webapp_serverowned -R "${MY_HTDOCSDIR}"/data

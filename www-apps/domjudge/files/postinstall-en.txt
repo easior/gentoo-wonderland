@@ -1,0 +1,5 @@
+Create a new MySQL database
+$ dj_setup_database -u root -r install
+after modifing the password in /etc/domjudge/dppassword.secret. Then, Login on
+http://${VHOST_HOSTNAME}/${VHOST_APPDIR}/admin/install/install.php
+
