@@ -11,19 +11,19 @@
 ### END INIT INFO
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-DAEMON=/usr/sbin/judgedaemon
+DAEMON=/usr/bin/judgedaemon
 NAME=judgedaemon
 OPTIONS='-d -v3 -n 0'
 RUNDIR=/var/run/domjudge/
 PIDFILE=$RUNDIR$NAME.pid
 DESC="DOMjudge Judgedaemon"
-RUNAS=domjudge
+RUNAS=domjudge-run
 CHROOTDIR=/var/lib/domjudge/javachroot
 CGROUPDIR=/cgroup
 
 test -x $DAEMON || exit 0
 
-. /lib/lsb/init-functions
+#. /lib/lsb/init-functions
 
 if [ ! -d $RUNDIR ]; then
 	mkdir -p $RUNDIR
@@ -32,7 +32,7 @@ fi
 
 # Make sure cgroups are mounted where we expect them
 if [ ! -d $CGROUPDIR/memory/domjudge ]; then
-	/usr/sbin/create_cgroups
+	/usr/bin/create_cgroups
 fi
 
 # Check for required cgroup feature

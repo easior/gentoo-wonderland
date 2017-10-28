@@ -5,9 +5,6 @@ EAPI=6
 
 inherit eutils user webapp
 
-#S="${WORKDIR}/${MY_P}"
-#S=${WORKDIR}/${PN}
-
 DESCRIPTION="DOMjudge is an automated judge system to run programming contests, like the ACM ICPC."
 HOMEPAGE="https://www.domjudge.org/"
 SRC_URI="https://www.domjudge.org/releases/${PN}-${PV}.tar.gz
@@ -15,10 +12,9 @@ SRC_URI="https://www.domjudge.org/releases/${PN}-${PV}.tar.gz
 
 LICENSE="GPL-2"
 KEYWORDS="alpha amd64 ~arm ppc ppc64 ~sparc x86"
-IUSE="+curl -daemon doc +mysql postgres sqlite"
+IUSE="apc +curl +daemon +doc haskell +mysql pascal postgres sqlite"
 
-REQUIRED_USE="|| ( mysql postgres sqlite )
-			|| ( apache nginx )"
+REQUIRED_USE="|| ( mysql postgres sqlite )"
 
 COMMON_DEPEND="
 	daemon? ( dev-libs/libcgroup
@@ -28,14 +24,18 @@ COMMON_DEPEND="
 	dev-texlive/texlive-fontsrecommended
 	dev-texlive/texlive-latexextra
 	dev-texlive/texlive-langeuropean
-	dev-lang/php[cli,curl?,filter,gd,gmp,mcrypt,json,mysql?,postgres?,sqlite?,xml]
+	dev-lang/php[cli,curl?,filter,gd,gmp,crypt,json,mysql?,postgres?,sqlite?,unicode,xml]
 	sys-process/procps
+	net-misc/ntp
+	app-admin/sudo
 	virtual/httpd-php"
 DEPEND="${COMMON_DEPEND}
 	dev-php/composer
 	sys-apps/net-tools"
 RDEPEND="${COMMON_DEPEND}
-	 app-admin/sudo"
+	apc? ( dev-php/pecl-apcu )
+	haskell? ( dev-lang/ghc )
+	pascal? ( dev-lang/fpc )"
 
 pkg_setup() {
 	webapp_pkg_setup
@@ -104,12 +104,15 @@ src_install() {
 
 	if use doc; then
 		emake DESTDIR="${D}" install-docs
+	else
+		rm -rf ${D}/usr/share/${PN}/www/jury/doc
 	fi
-
 	webapp_src_preinst
-		cp -R ${D}/usr/share/${PN}/www/* ${D}/${MY_HTDOCSDIR}
-		webapp_postinst_txt en ${FILESDIR}/postinstall-en.txt
-	insinto "${MY_HTDOCSDIR}"
+	cp -R ${D}/usr/share/${PN}/www/* ${D}/${MY_HTDOCSDIR}
+	mkdir -p ${D}/etc/sudoers.d
+	mv ${D}/etc/domjudge/sudoers-domjudge ${D}/etc/sudoers.d/domjudge
+	webapp_postinst_txt en ${FILESDIR}/postinstall-en.txt
+	#insinto "${MY_HTDOCSDIR}"
 
 	#webapp_serverowned -R "${MY_HTDOCSDIR}"/apps
 	#webapp_serverowned -R "${MY_HTDOCSDIR}"/data
