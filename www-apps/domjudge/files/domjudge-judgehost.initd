@@ -23,7 +23,7 @@ CGROUPDIR=/cgroup
 
 test -x $DAEMON || exit 0
 
-#. /lib/lsb/init-functions
+. /etc/init.d/functions.sh
 
 if [ ! -d $RUNDIR ]; then
 	mkdir -p $RUNDIR

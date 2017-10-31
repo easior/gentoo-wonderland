@@ -1,5 +1,14 @@
-Create a new MySQL database
-$ dj_setup_database -u root -r install
-after modifing the password in /etc/domjudge/dppassword.secret. Then, Login on
-http://${VHOST_HOSTNAME}/${VHOST_APPDIR}/admin/install/install.php
+Part 1 Domserver
 
+Create a new MySQL database
+$ sudo dj_setup_database -u root -r install
+after modifing the password in /etc/domjudge/dppassword.secret. Then, Login on
+http://${VHOST_HOSTNAME}/${VHOST_APPDIR}/jury
+as account "admin" with password "admin" and change the password.
+
+Part 2 Judgehost
+
+Please create a chroot environment with JRE support firstly
+$ sudo dj_make_chroot [-d chrootdir] [-D distribution] [-a arch]
+and then start judgedaemon
+$ sudo /etc/init.d/domjudge-judgehost
